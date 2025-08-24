@@ -1,4 +1,3 @@
-import { error } from '@sveltejs/kit';
 import type { RequestHandler } from '../../../../../.svelte-kit/types/src/routes';
 import {createCollection, fetchCollection} from "./model";
 
