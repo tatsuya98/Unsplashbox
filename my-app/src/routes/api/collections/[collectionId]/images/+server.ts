@@ -1,9 +1,10 @@
 import type { RequestHandler } from '../../../.svelte-kit/types/src/routes';
 import {fetchImagesById, insertIntoImages} from "./model";
+import {json} from "@sveltejs/kit";
 
 export const GET: RequestHandler = async ({url}) => {
     const id = Number(url.searchParams.get('id'))
-    return new Response(JSON.stringify(await fetchImagesById(id)))
+    return json(await fetchImagesById(id))
 }
 
 

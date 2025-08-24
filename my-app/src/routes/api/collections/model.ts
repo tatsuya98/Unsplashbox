@@ -1,4 +1,4 @@
-import type {collection} from "../../../../types";
+import type {collection} from "$lib/types";
 import pool from "../../../db/connection";
 
 export const fetchCollection  = async ():Promise<collection[]> =>{
