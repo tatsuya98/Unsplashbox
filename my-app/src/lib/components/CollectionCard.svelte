@@ -1,7 +1,6 @@
 <script lang="ts">
     import type {Photo} from "$lib/types";
     import {onMount} from "svelte";
-    import {convertToPhoto} from "$lib/utils";
 
     const {collectionName, imageIds} = $props()
     let fetchedImages:Photo[] = [];
