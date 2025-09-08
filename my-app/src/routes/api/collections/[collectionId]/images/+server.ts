@@ -4,6 +4,7 @@ import {json} from "@sveltejs/kit";
 
 export const GET: RequestHandler = async ({url}) => {
     const id = Number(url.searchParams.get('id'))
+    console.log(id)
     return json(await fetchImagesById(id))
 }
 

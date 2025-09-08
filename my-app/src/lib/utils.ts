@@ -10,3 +10,5 @@ export const convertToPhoto = (objectToConvert: { id: any; width: any; height: a
         user: objectToConvert.user,
     }
 }
+
+
