@@ -13,7 +13,14 @@
 </svelte:head>
 
 <Navbar />
+<hr>
 
 <style>
+    :global(body){
+            font-family: "Be Vietnam Pro", sans-serif;
+    }
+    hr{
+        opacity: .2;
+    }
 </style>
 {@render children?.()}

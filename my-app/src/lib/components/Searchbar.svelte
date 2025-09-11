@@ -2,6 +2,7 @@
 
 
     import {goto} from "$app/navigation";
+    import {page} from "$app/state";
     import {unsplashData, unsplashPageNumber} from "$lib/state.svelte";
 
     let queryToSearch:string = $state("")
@@ -30,7 +31,7 @@
 
 </script>
 <svelte:window onkeydown={handleSearch} />
-    <input class={window.location.href.includes("query") ? "search-position" : ""} type="text"  inputmode="search"  bind:value={queryToSearch} placeholder="Enter your keywords...">
+    <input class={page.url.pathname.includes("query") ? "search-position" : ""} type="text"  inputmode="search"  bind:value={queryToSearch} placeholder="Enter your keywords...">
 
 <style>
     input{

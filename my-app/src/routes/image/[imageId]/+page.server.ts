@@ -1,7 +1,6 @@
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import {ACCESS_KEY} from "$env/static/private";
-
+import {ACCESS_KEY, BASE_URL} from "$env/static/private";
 
 export const load:PageServerLoad = async ({params}) =>{
     if(params.imageId.length > 0){
@@ -9,14 +8,15 @@ export const load:PageServerLoad = async ({params}) =>{
         if(Object.keys(imageData).length === 1){
             return error(404, "Image not found");
         }
-       const collectionData = await fetchCollectionData(params.imageId);
+        const {collectionsData, imageIds} = await fetchCollectionData(params.imageId);
         const images = []
-        const imageIdsFromCollection = collectionData[1]
-        for (const imageId of imageIdsFromCollection) {
-            const data = await fetchImageData(imageId);
-            images.push(data);
+        if(imageIds.length > 0){
+            for (const imageId of imageIds) {
+                const data = await fetchImageData(imageId);
+                images.push(data);
+            }
         }
-        return {data:{collectionData: collectionData, fetchedImages: images, imageData}};
+        return {collectionsData: collectionsData, fetchedImages: images, imageData: imageData};
     }
 }
 
@@ -32,7 +32,7 @@ async function fetchImageData(imageId: string) {
 }
 
 async function fetchCollectionData(imageId: string) {
-    const collectionResponse = await fetch(`/api/images/${imageId}`,{
+    const collectionResponse = await fetch(`${BASE_URL}/api/images/${imageId}`,{
         method:"POST",
         headers: new Headers({
             "Content-Type": "application/json",

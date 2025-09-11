@@ -18,7 +18,9 @@ import {unsplashData} from "$lib/state.svelte";
             </div>
             <div class="column">
                 {#each unsplashData.images as imageData}
-                    <img src={imageData.urls.small} alt="">
+                    <a  href={`/image/${imageData.id}`} aria-label="Go to image page">
+                        <img src={imageData.urls.small} alt="">
+                    </a>
                 {/each}
             </div>
         </div>
