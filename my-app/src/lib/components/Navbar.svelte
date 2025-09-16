@@ -1,15 +1,22 @@
 <script lang="ts">
 import logo from "$lib/assets/Logo.svg"
 import { page } from '$app/state'
+import {unsplashData} from "$lib/state.svelte";
+import {replaceState} from "$app/navigation";
+
+const handleClick = () => {
+    unsplashData.images = []
+    replaceState("/", page.state);
+}
 </script>
 
 <nav>
     <div class="flex-container">
-        <a href="/">
+        <a href="/" onclick={handleClick}>
             <img src={logo} alt="website logo">
         </a>
         <ul class="links">
-            <li><a href="/" class:active={page.url.pathname=== "/"}>Home</a></li>
+            <li><a href="/" class:active={page.url.pathname === "/"} onclick={handleClick}>Home</a></li>
             <li><a href="/collections" class:active={page.url.pathname === "/collections"}>Collections</a></li>
         </ul>
     </div>

@@ -11,8 +11,11 @@ export const unsplashData = $state<CollectionInterface>({
   collections: []
 })
 
-export const unsplashPageNumber = $state<Record<string, number>>({
-})
+
+
+export const unsplashPageNumber = $state<Record<string, number>>({})
+
+export const collectionIds: Number[] = $state([])
 
 export const setCollections = (collectionsData: Collection[]) => {
    unsplashData.collections = collectionsData
